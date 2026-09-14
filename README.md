@@ -1,6 +1,6 @@
 # Context-Aware Enterprise Knowledge Engine
 
-A full-stack, portfolio-grade knowledge platform that ingests documents, chunks their text, stores vector embeddings in PostgreSQL with pgvector, and answers grounded enterprise questions using the Gemini API. The project was built as a modular monolith foundation that keeps the repository runnable while preserving a migration-friendly architecture.
+A full-stack knowledge platform that ingests documents, chunks their text, stores vector embeddings in PostgreSQL with pgvector, and answers questions using the Gemini API. The project was built as a modular monolith foundation that keeps the repository runnable while preserving a migration friendly and easy to use architecture.
 
 ## Overview
 
@@ -224,4 +224,4 @@ CREATE EXTENSION IF NOT EXISTS vector;
 
 ## Final Notes
 
-This project is best understood as a clean, modular foundation for a context-aware enterprise knowledge engine. It demonstrates the major building blocks of a document ingestion and retrieval system while keeping the implementation intentionally maintainable and migration-friendly. The architecture is structured so later phases can evolve toward more advanced indexing, authentication, or distributed services without rewriting the core design from scratch.
+This project is basically a clean modular foundation for a context aware enterprise knowledge engine. It demonstrates the major building blocks of a document ingestion and retrieval system while keeping the implementation intentionally maintainable and migration friendly. The architecture is structured so later phases can evolve toward more advanced indexing, authentication, or distributed services without rewriting the core design from scratch.
