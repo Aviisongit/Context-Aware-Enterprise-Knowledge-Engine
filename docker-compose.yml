@@ -1,0 +1,60 @@
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    container_name: knowledge-engine-postgres
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-knowledge_engine_db}
+      POSTGRES_USER: ${POSTGRES_USER:-knowledge_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-knowledge_password}
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgvector_data:/var/lib/postgresql/data
+      - ./docker/postgres/initdb:/docker-entrypoint-initdb.d
+    networks:
+      - knowledge-engine-net
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: knowledge-engine-backend
+    depends_on:
+      - postgres
+    env_file:
+      - .env
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/${POSTGRES_DB:-knowledge_engine_db}
+      SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER:-knowledge_user}
+      SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD:-knowledge_password}
+      GEMINI_API_KEY: ${GEMINI_API_KEY:-}
+      GEMINI_API_URL: ${GEMINI_API_URL:-https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent}
+    ports:
+      - "8080:8080"
+    networks:
+      - knowledge-engine-net
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: knowledge-engine-frontend
+    depends_on:
+      - backend
+    environment:
+      VITE_PROXY_TARGET: http://backend:8080
+    ports:
+      - "5173:5173"
+    networks:
+      - knowledge-engine-net
+
+volumes:
+  pgvector_data:
+    driver: local
+
+networks:
+  knowledge-engine-net:
+    driver: bridge

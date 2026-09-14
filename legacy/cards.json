@@ -1,0 +1,44 @@
+[
+  {
+    "name": "Chase Freedom Flex",
+    "type": "cashback",
+    "annual_fee": 0,
+    "categories": {
+      "rotating": {
+        "Q1": {"category": "groceries", "multiplier": 0.05},
+        "Q2": {"category": "gas", "multiplier": 0.05},
+        "Q3": {"category": "restaurants", "multiplier": 0.05},
+        "Q4": {"category": "online shopping", "multiplier": 0.05}
+      },
+      "always": [
+        {"category": "dining", "multiplier": 0.03},
+        {"category": "drugstores", "multiplier": 0.03},
+        {"category": "all_other", "multiplier": 0.01}
+      ]
+    }
+  },
+  {
+    "name": "Amazon Prime Rewards Visa Signature",
+    "type": "cashback",
+    "annual_fee": 0,
+    "categories": {
+      "always": [
+        {"category": "amazon", "multiplier": 0.05},
+        {"category": "whole foods", "multiplier": 0.05},
+        {"category": "restaurants", "multiplier": 0.02},
+        {"category": "gas", "multiplier": 0.02},
+        {"category": "all_other", "multiplier": 0.01}
+      ]
+    }
+  },
+  {
+    "name": "Citi Double Cash",
+    "type": "cashback",
+    "annual_fee": 0,
+    "categories": {
+      "always": [
+        {"category": "all_other", "multiplier": 0.02}
+      ]
+    }
+  }
+]

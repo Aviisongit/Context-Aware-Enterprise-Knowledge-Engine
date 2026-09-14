@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: context-aware-knowledge-engine
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/knowledge_engine_db}
+    username: ${SPRING_DATASOURCE_USERNAME:knowledge_user}
+    password: ${SPRING_DATASOURCE_PASSWORD:knowledge_password}
+    driver-class-name: org.postgresql.Driver
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 20MB
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+        jdbc:
+          time_zone: UTC
+    show-sql: false
+
+server:
+  port: 8080
+
+gemini:
+  api:
+    key: ${GEMINI_API_KEY:}
+    url: ${GEMINI_API_URL:https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent}
+
+logging:
+  level:
+    org.hibernate.SQL: INFO
+    org.springframework: INFO
